@@ -1,6 +1,6 @@
 project(Weak3)
 #-------------------------------------------------------------------------------
-file(GLOB_RECURSE SOURCES "${CMAKE_SOURCE_DIR}/*.cpp")
+file(GLOB_RECURSE SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
 #-------------------------------------------------------------------------------
 foreach(file_path ${SOURCES})
   string( REPLACE ".cpp" "" new_name ${file_path} )

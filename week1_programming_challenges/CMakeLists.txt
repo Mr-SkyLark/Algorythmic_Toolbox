@@ -1,6 +1,10 @@
 project(Weak1)
 #-------------------------------------------------------------------------------
-file(GLOB_RECURSE SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/*.c*")
+file(GLOB_RECURSE SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
 #-------------------------------------------------------------------------------
-add_executable(MaxPairwiseProduct ${HEADERS} ${SOURCES})
+foreach(file_path ${SOURCES})
+  string( REPLACE ".cpp" "" new_name ${file_path} )
+  get_filename_component(filename "${new_name}" NAME)
+  add_executable( "${PROJECT_NAME}_${filename}" ${file_path} )
+endforeach()
 #-------------------------------------------------------------------------------
