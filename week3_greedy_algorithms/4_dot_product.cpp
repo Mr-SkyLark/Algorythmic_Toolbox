@@ -4,13 +4,13 @@
 
 using std::vector;
 
-long long max_dot_product(vector<int> a, vector<int> b) 
+long long max_dot_product(vector<int>& a, vector<int>& b)
 {
   long long result = 0;
-  std::sort(a.cbegin(), a.cend());
-  std::sort(b.cbegin(), b.cend());
+  std::sort(a.begin(), a.end());
+  std::sort(b.begin(), b.end());
   for (size_t i = 0; i < a.size(); i++) {
-    result += ((long long) a[i]) * b[i];
+    result += (static_cast<long long>(a[i])) * b[i];
   }
   return result;
 }

@@ -3,8 +3,19 @@
 
 using std::vector;
 
-vector<int> optimal_summands(int n) {
+vector<int> optimal_summands(int n)
+{
   vector<int> summands;
+  for(int i = 1; n > 0; ++i)
+  {
+    n -= i;
+    if(n < (i + 1))
+    {
+      i += n;
+      n = 0;
+    }
+    summands.emplace_back(i);
+  }
   //write your code here
   return summands;
 }
