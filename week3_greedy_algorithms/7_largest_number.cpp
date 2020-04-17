@@ -13,7 +13,9 @@ bool stringGreaterCustom (const std::string& left, const std::string& right)
   auto leftSize = left.size();
 
   bool isLeftGreater = false;
-  bool isUniqueCase = true;
+  bool isUniqueCase = false;
+
+  size_t equalCounter = 0;
   // calculate
   for(size_t i = 0; i < leftSize || i < rightSize; ++i)
   {
@@ -36,12 +38,15 @@ bool stringGreaterCustom (const std::string& left, const std::string& right)
     }
     if(checkingLeft == checkingRight)
     {
+      ++equalCounter;
       continue;
     }
-    isUniqueCase = false;
     isLeftGreater = checkingLeft > checkingRight;
     break;
   }
+
+  if(leftSize != rightSize && equalCounter == std::max(leftSize,rightSize))
+    isUniqueCase = true;
 
   if(isUniqueCase)
   {
@@ -72,6 +77,16 @@ void testGreaterFunction()
 {
   std::string left;
   std::string right;
+
+  left = "9";
+  right = "9";
+  std::cout << left << " > " << right << " = " <<
+                (stringGreaterCustom(left, right) ? "True" : "False") << " | False" << "\n";
+
+  left = "9";
+  right = "10";
+  std::cout << left << " > " << right << " = " <<
+                (stringGreaterCustom(left, right) ? "True" : "False") << " | True" << "\n";
 
   left = "3";
   right = "332";
@@ -154,6 +169,17 @@ void testGreaterFunction()
                 (stringGreaterCustom(left, right) ? "True" : "False") << " | False" << "\n";
 }
 
+void testRundom()
+{
+  vector<std::string> testData = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+  vector<std::string> numbers(100);
+  for (int i = 0; i < 100; ++i)
+  {
+    numbers[i] = testData[std::rand() % 10];
+  }
+  std::cout << "Result: " << largest_number(numbers) << "\n";
+}
+
 int main() {
   size_t count;
   std::cin >> count;
@@ -163,5 +189,6 @@ int main() {
   }
 
   std::cout << largest_number(numbers);
-// testGreaterFunction();
+//  testRundom();
+//  testGreaterFunction();
 }
