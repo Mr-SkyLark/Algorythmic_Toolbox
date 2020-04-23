@@ -18,21 +18,21 @@ int partition2(vector<int> &a, int l, int r) {
   return j;
 }
 
-void randomized_quick_sort(vector<int> &a, int l, int r) {
-  if (l >= r) {
+void randomized_quick_sort(vector<int> &aarray, size_t left, size_t right) {
+  if (left >= right) {
     return;
   }
 
-  int k = l + rand() % (r - l + 1);
+  size_t k = left + rand() % (right - left + 1);
   swap(a[l], a[k]);
-  int m = partition2(a, l, r);
+  int m = partition2(aarray, left, right);
 
-  randomized_quick_sort(a, l, m - 1);
-  randomized_quick_sort(a, m + 1, r);
+  randomized_quick_sort(aarray, left, m - 1);
+  randomized_quick_sort(aarray, m + 1, right);
 }
 
 int main() {
-  int n;
+  size_t n;
   std::cin >> n;
   vector<int> a(n);
   for (size_t i = 0; i < a.size(); ++i) {
